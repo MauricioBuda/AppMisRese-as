@@ -41,8 +41,7 @@ const Category = ({ item }) => {
 
   return (
     <>
-    <Pressable>
-      {/* onPress={() => navigation.navigate("Products", { category: item })}> */}
+    <Pressable onPress={() => navigation.navigate("Products")}>
       <ShadowWrapper style={styles.container}>
 
         {

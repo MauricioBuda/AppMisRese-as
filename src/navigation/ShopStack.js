@@ -16,7 +16,8 @@ const ShopStack = () => {
                                 "Bienvenido" 
                             : 
                                 route.name === "Products" ?
-                                    route.params.category
+                                    // route.params.category
+                                    "aaa"
                                 :
                                     "Detalle del Producto"
                         } />
