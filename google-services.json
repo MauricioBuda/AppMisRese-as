@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "823858284019",
+    "firebase_url": "https://resenias-a624e-default-rtdb.firebaseio.com",
+    "project_id": "resenias-a624e",
+    "storage_bucket": "resenias-a624e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823858284019:android:066bddf7a385c3e0aabe86",
+        "android_client_info": {
+          "package_name": "com.mauri.mauriApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAABNrnhFgXtgbQ9hD8vN46Q5QCqfE9eB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
