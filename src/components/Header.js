@@ -25,8 +25,10 @@ const Header = ({title}) => {
   const localId = useSelector(state => state.auth.localId);
   const [triggerAddNewCategory] = useAddCategoryMutation();
 
+
   const [viewModal, setViewModal] = useState(false)
   const [newCategory, setNewCategory] = useState("")
+
 
 
 
@@ -35,15 +37,26 @@ const Header = ({title}) => {
     dispatch(clearUser())
   }
 
+
+
+
   const handleViewModal = () => {
     setViewModal(!viewModal)
   }
+
+
+
 
   const handleAddNewCategory = async () => {
     console.log(localId)
     await triggerAddNewCategory({ localId, category: { name: newCategory } })
     handleViewModal()
 }
+
+
+
+
+
 
   return (
     <View style={styles.container}>
@@ -56,6 +69,10 @@ const Header = ({title}) => {
           null
       }
 
+
+
+
+
       {route.name !== "Home" && route.name !== "Login" && route.name !== "Register"? 
       <Pressable style={styles.icon} onPress={()=>navigation.goBack()}>
           <Ionicons name="arrow-undo-circle-outline" size={35} color="white" />
@@ -63,11 +80,19 @@ const Header = ({title}) => {
       :
       null
       } 
+
+
+
+
       <Text style={styles.text}>{title}</Text>
-      {idToken && 
+      {idToken  && 
       <Pressable onPress={onLogout} style={styles.logout}>
         <Ionicons name="exit-outline" size={35} color="white" />
       </Pressable>}
+
+
+
+
 
 {
   viewModal
@@ -95,6 +120,10 @@ const Header = ({title}) => {
 : 
 null
 }
+
+
+
+
     
     
     </View>

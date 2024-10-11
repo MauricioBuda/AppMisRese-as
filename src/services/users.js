@@ -4,8 +4,11 @@ import { URL_FIREBASE } from "../firebase/database";
 export const usersApi = createApi({
   reducerPath: "usersApi",
   baseQuery: fetchBaseQuery({ baseUrl: URL_FIREBASE }),
-  tagTypes: ["userImage", "userName", "categories"],
+  tagTypes: ["userImage", "userName", "categories", "items"],
   endpoints: (builder) => ({
+
+
+
     patchImageProfile: builder.mutation({
       query: ({ image, localId }) => ({
         url: `users/${localId}.json`,
@@ -14,6 +17,8 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ["userImage"],
     }),
+
+
 
     patchNameProfile: builder.mutation({
       query: ({ name, localId }) => ({
@@ -24,6 +29,8 @@ export const usersApi = createApi({
       invalidatesTags: ["userName"],
     }),
 
+
+
     addCategory: builder.mutation({
         query: ({ localId, category }) => ({
           url: `users/${localId}/categories.json`,  
@@ -32,6 +39,20 @@ export const usersApi = createApi({
         }),
         invalidatesTags: ["categories"],
       }),
+
+
+
+      addItemInCategory: builder.mutation({
+        query: ({ localId, categoryId, newItem }) => ({
+          url: `users/${localId}/categories/${categoryId}/items.json`,  // Agregar un nodo 'items'
+          method: "POST",
+          body: {
+            name: newItem,  // Estructura el nuevo ítem como un objeto
+          },
+        }),
+        invalidatesTags: ["items"],
+      }),
+      
       
 
     // Eliminar categoría
@@ -43,6 +64,9 @@ export const usersApi = createApi({
       invalidatesTags: ["categories"],
     }),
 
+
+
+
     editCategory: builder.mutation({
         query: ({ localId, categoryId, newName }) => ({
           url: `users/${localId}/categories/${categoryId}.json`,  // URL de la categoría a editar
@@ -52,11 +76,17 @@ export const usersApi = createApi({
         invalidatesTags: ["categories"], // Invalidar el cache para que se refresque la lista de categorías
       }),
 
+
+
+
     // Obtener categorías del usuario
     getCategories: builder.query({
         query: (localId) => `users/${localId}/categories.json`,
         providesTags: ["categories"]
     }),
+
+
+
 
     getUser: builder.query({
       query: ({ localId }) => `users/${localId}.json`,
@@ -70,6 +100,20 @@ export const usersApi = createApi({
       },
       providesTags: ["userImage", "userName"],
     }),
+
+
+
+    getItemsFromCategories: builder.query({
+        query: ({ localId, categoryId }) => `users/${localId}/categories/${categoryId}/items.json`,
+        // transformResponse: (response) => {
+        //     if (!response) return { items : [] };
+    
+        //     return {
+        //       ...response,
+        //     };
+        //   },
+        providesTags: ["items"],
+      }),
   }),
 });
 
@@ -80,5 +124,7 @@ export const {
   usePatchNameProfileMutation,
   useAddCategoryMutation,
   useEditCategoryMutation,
-  useDeleteCategoryMutation
+  useDeleteCategoryMutation,
+  useAddItemInCategoryMutation,
+  useGetItemsFromCategoriesQuery
 } = usersApi;

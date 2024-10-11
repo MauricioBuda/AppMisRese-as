@@ -1,13 +1,14 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import ShadowWrapper from './ShadowWrapper';
 import { colors } from '../global/colors';
 import { useNavigation } from '@react-navigation/native';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { useDeleteCategoryMutation, useEditCategoryMutation } from '../services/users';
+import { useAddItemInCategoryMutation, useDeleteCategoryMutation, useEditCategoryMutation } from '../services/users';
 import { useSelector } from 'react-redux';
 import ConfirmModal from './ConfirmModal';
 import LoadingSpinner from './LoadingSpinner';
+
 
 const Category = ({ item }) => {
   const navigation = useNavigation();
@@ -39,9 +40,11 @@ const Category = ({ item }) => {
     handleEditNameCategory()
   }
 
+
+
   return (
     <>
-    <Pressable onPress={() => navigation.navigate("Products")}>
+    <Pressable onPress={() => navigation.navigate("Products",{name:item.name, categoryId: item.id})}>
       <ShadowWrapper style={styles.container}>
 
         {
