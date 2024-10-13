@@ -3,14 +3,17 @@ import React from 'react'
 import { colors } from '../global/colors'
 import { useNavigation } from '@react-navigation/native'
 
-const EmptyList = ({title, button, navigateTo}) => {
+const EmptyList = ({title, button, funcion}) => {
 
 const navigation = useNavigation()
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{title}</Text>
-      <Pressable onPress={()=>navigation.navigate(navigateTo)} style={styles.containerButton}>
+      <Pressable  
+          onPress={title==="¡Todavìa no hay ítems en esta categoría!"? funcion: ()=>navigation.navigate(funcion)}
+          style={styles.containerButton}
+      >
         <Text style={styles.button}>{button}</Text>
       </Pressable>
     </View>
@@ -38,7 +41,7 @@ const styles = StyleSheet.create({
     button:{
         fontSize:20,
         fontFamily: "Josefin",
-        width:100,
+        width:180,
         textAlign:"center"
     }
     

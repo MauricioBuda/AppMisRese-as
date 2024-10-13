@@ -18,7 +18,7 @@ const Orders = () => {
   if(isLoading) return <LoadingSpinner/>
 
   if(orders.length === 0){
-    return <EmptyList title="¡Por el momento no hay órdenes!" button="Ir al carrito" navigateTo="CartStack"/>
+    return <EmptyList title="¡Por el momento no hay órdenes!" button="Ir al carrito" funcion="CartStack"/>
   }
 
   const deleteOrders = () => {

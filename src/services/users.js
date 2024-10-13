@@ -52,6 +52,15 @@ export const usersApi = createApi({
         }),
         invalidatesTags: ["items"],
       }),
+
+
+      deleteItemInCategory: builder.mutation({
+        query: ({ localId, categoryId, itemId }) => ({
+          url: `users/${localId}/categories/${categoryId}/items/${itemId}.json`,  // Agregar un nodo 'items'
+          method: "DELETE",
+        }),
+        invalidatesTags: ["items"],
+      }),
       
       
 
@@ -105,13 +114,6 @@ export const usersApi = createApi({
 
     getItemsFromCategories: builder.query({
         query: ({ localId, categoryId }) => `users/${localId}/categories/${categoryId}/items.json`,
-        // transformResponse: (response) => {
-        //     if (!response) return { items : [] };
-    
-        //     return {
-        //       ...response,
-        //     };
-        //   },
         providesTags: ["items"],
       }),
   }),
@@ -126,5 +128,6 @@ export const {
   useEditCategoryMutation,
   useDeleteCategoryMutation,
   useAddItemInCategoryMutation,
-  useGetItemsFromCategoriesQuery
+  useGetItemsFromCategoriesQuery,
+  useDeleteItemInCategoryMutation
 } = usersApi;
