@@ -7,7 +7,23 @@ export const usersApi = createApi({
   tagTypes: ["userImage", "userName", "categories", "items"],
   endpoints: (builder) => ({
 
+    getUser: builder.query({
+      query: ({ localId }) => `users/${localId}.json`,
+      transformResponse: (response) => {
+        if (!response) return { image: "" };
+        if (!response.image) response.image = "";
 
+        return {
+          ...response,
+        };
+      },
+      providesTags: ["userImage", "userName"],
+    }),
+    
+    getItemInformation: builder.query({
+      query: ({localId, categoryId, itemId}) => `users/${localId}/categories/${categoryId}/items/${itemId}.json`,
+      providesTags: ["items"]
+  }),
 
     patchImageProfile: builder.mutation({
       query: ({ image, localId }) => ({
@@ -18,6 +34,38 @@ export const usersApi = createApi({
       invalidatesTags: ["userImage"],
     }),
 
+    patchAddImageInItemInCategory: builder.mutation({
+      query: ({ localId, categoryId, itemId, image }) => ({
+        url: `users/${localId}/categories/${categoryId}/items/${itemId}.json`,  // Agregar un nodo 'items'
+        method: "PATCH",
+        body: {
+          image: image,  // Estructura el nuevo ítem como un objeto
+        },
+      }),
+      invalidatesTags: ["items"],
+    }),
+
+    patchAddCalificationInItemInCategory: builder.mutation({
+      query: ({ localId, categoryId, itemId, calification }) => ({
+        url: `users/${localId}/categories/${categoryId}/items/${itemId}.json`,  // Agregar un nodo 'items'
+        method: "PATCH",
+        body: {
+          calification: calification,  // Estructura el nuevo ítem como un objeto
+        },
+      }),
+      invalidatesTags: ["items"],
+    }),
+
+    patchAddObservationInItemInCategory: builder.mutation({
+      query: ({ localId, categoryId, itemId, observation }) => ({
+        url: `users/${localId}/categories/${categoryId}/items/${itemId}.json`,  // Agregar un nodo 'items'
+        method: "PATCH",
+        body: {
+          observation: observation,  // Estructura el nuevo ítem como un objeto
+        },
+      }),
+      invalidatesTags: ["items"],
+    }),
 
 
     patchNameProfile: builder.mutation({
@@ -97,18 +145,9 @@ export const usersApi = createApi({
 
 
 
-    getUser: builder.query({
-      query: ({ localId }) => `users/${localId}.json`,
-      transformResponse: (response) => {
-        if (!response) return { image: "" };
-        if (!response.image) response.image = "";
 
-        return {
-          ...response,
-        };
-      },
-      providesTags: ["userImage", "userName"],
-    }),
+
+
 
 
 
@@ -129,5 +168,9 @@ export const {
   useDeleteCategoryMutation,
   useAddItemInCategoryMutation,
   useGetItemsFromCategoriesQuery,
-  useDeleteItemInCategoryMutation
+  useDeleteItemInCategoryMutation,
+  usePatchAddImageInItemInCategoryMutation,
+  useGetItemInformationQuery,
+  usePatchAddCalificationInItemInCategoryMutation,
+  usePatchAddObservationInItemInCategoryMutation
 } = usersApi;

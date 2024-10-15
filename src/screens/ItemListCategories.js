@@ -13,6 +13,7 @@ const { height, width } = Dimensions.get('window');
 const ItemListCategories = ({route}) => {
   const { name, categoryId } = route.params
   const localId = useSelector(state => state.auth.localId)
+  const [itemId, setItemId] = useState("")
 
   const [triggerAddNewItemInCategory] = useAddItemInCategoryMutation()
   const [triggerDeleteItemFromCategory] = useDeleteItemInCategoryMutation()
@@ -22,6 +23,10 @@ const ItemListCategories = ({route}) => {
 
   const [viewModal, setViewModal] = useState(false);
   const [newItem, setNewItem] = useState("");
+
+  // useEffect(()=>{
+
+  // },[items])
 
   const addNewItemInCategory = async () => {
     if (!newItem) return;  // Asegúrate de que haya un ítem para agregar
@@ -69,7 +74,7 @@ const ItemListCategories = ({route}) => {
           <FlatList
             data={Object.entries(items)}  // Convertir el objeto de ítems en un array
             keyExtractor={([key, item]) => key}
-            renderItem={({ item }) => <ItemList item= {item[1].name} itemId={item[0]} functionDelete={deleteItemInCategory}/>} // Renderizar el nombre del ítem
+            renderItem={({ item }) => <ItemList name= {item[1].name} itemId={item[0]}  categoryId={categoryId} functionDelete={deleteItemInCategory}/>} // Renderizar el nombre del ítem
           />
 
         <Pressable onPress={handleViewModal} style={styles.btn}>
@@ -112,10 +117,11 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: colors.color1,
-    width: "60%",
+    minWidth: "60%",
+    maxWidth:"80%",
     borderRadius: 8,
     marginVertical: 20,
-    marginHorizontal: "20%",
+    marginHorizontal: "auto",
     padding: 10
   },
   btnText: {

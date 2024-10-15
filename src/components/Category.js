@@ -82,7 +82,7 @@ const Category = ({ item }) => {
     {
       deleteModal
       ?
-    <ConfirmModal btn1="CANCELAR" btn2="ELIMINAR" onPress1={handleDeleteModal} onPress2={confirmDeleteCategory}/>
+    <ConfirmModal title="¿Seguro? Se eliminará la categoría y todo su contenido" btn1="CANCELAR" btn2="ELIMINAR" onPress1={handleDeleteModal} onPress2={confirmDeleteCategory}/>
       :
       null
     }

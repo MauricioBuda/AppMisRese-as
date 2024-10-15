@@ -5,11 +5,11 @@ import { colors } from '../global/colors'
 const { height, width } = Dimensions.get('window');
 
 
-const ConfirmModal = ({btn1, btn2, onPress1, onPress2}) => {
+const ConfirmModal = ({title, btn1, btn2, onPress1, onPress2}) => {
   return (
     <View style={styles.modalBackground}>
         <Text style={styles.text}>
-            ¿Seguro? Se eliminará la categoría y todo su contenido
+            {title}
         </Text>
         <View style={styles.modalBtnContainer}>
             <Pressable onPress={onPress1} style={styles.modalBtn}>
