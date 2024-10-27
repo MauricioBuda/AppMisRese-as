@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Pressable, ImageBackground } from 'react-native'
 import { colors } from '../global/colors'
 import InputForm from '../components/InputForm'
 import SubmitButton from '../components/SubmitButton'
@@ -9,8 +9,9 @@ import { setUser } from '../features/auth/authSlice'
 import { registerSchema } from '../validations/registerSchema'
 import { deleteSession, insertSession } from '../db'
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { useAddCategoryMutation } from '../services/users'
 import { URL_FIREBASE } from '../firebase/database'
+import CartelNombreApp from '../components/CartelNombreApp'
+import PresentacionApp from '../components/PresentacionApp'
 
 
 const Register = ({navigation}) => {
@@ -22,8 +23,12 @@ const Register = ({navigation}) => {
     const [errorConfirmPassword,setErrorConfirmPassword] = useState("")
     const [triggerRegister,{data,isSuccess,isError,error}] = useRegisterMutation()
     const dispatch = useDispatch()
+
+
     const [viewPass, setViewPass] = useState(true)
     const [viewConfirmPass, setViewConfirmPass] = useState(true)
+    const [viewPresentacion, setViewPresentacion] = useState(false)
+
 
 
 
@@ -100,6 +105,12 @@ const Register = ({navigation}) => {
     };
 
 
+
+
+    const handleViewPresentacion = () => {
+      setViewPresentacion(!viewPresentacion)
+    }
+
     const handleChangeViewPass = () => {
       setViewPass(!viewPass)
     }
@@ -109,8 +120,31 @@ const Register = ({navigation}) => {
     }
 
 
+
+
+
   return (
-    <View style={styles.main}>
+    <ImageBackground 
+      style={styles.main}
+      source={require('./../../assets/FondoResenias.jpg')}
+      resizeMode="contain"
+    >
+
+
+      <Pressable onPress={handleViewPresentacion} style={styles.questionIcon}>
+          <AntDesign name="questioncircleo" size={30} color="black" />
+      </Pressable>
+
+
+      <CartelNombreApp/>
+
+      {
+          viewPresentacion 
+          ?
+            <PresentacionApp closeModal={handleViewPresentacion}/>
+          :
+          null
+      }
         <View style={styles.container}>
             <InputForm
                 label="Email"
@@ -122,7 +156,7 @@ const Register = ({navigation}) => {
 
             <View style={styles.inputContainer}>
                 <InputForm
-                    label="Password"
+                    label="Contraseña"
                     value={password}
                     onChangeText={(t) => setPassword(t)}
                     isSecure={viewPass}
@@ -132,7 +166,7 @@ const Register = ({navigation}) => {
             </View>
             <View style={styles.inputContainer}>
                 <InputForm
-                    label="Confirmar Password"
+                    label="Confirmar contraseña"
                     value={confirmPassword}
                     onChangeText={(t) => setConfirmPassword(t)}
                     isSecure={viewConfirmPass}
@@ -149,7 +183,7 @@ const Register = ({navigation}) => {
                 <Text style={styles.subLink}>Incio de sesion</Text>
             </Pressable>
         </View>
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -161,9 +195,14 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center"
       },
+      questionIcon:{
+        position:"absolute",
+        top:12,
+        right:5
+      },
       container:{
         width:"90%",
-        backgroundColor:colors.color1,
+        backgroundColor: "#d4b3b3BB",
         gap:15,
         borderRadius:10,
         justifyContent:"center",
@@ -184,7 +223,7 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontFamily:"Josefin",
         color:"blue",
-        color: colors.color2
+        color: "#000000aa"
       },
       inputContainer:{
         flexDirection:"row",
@@ -193,12 +232,13 @@ const styles = StyleSheet.create({
       eye:{
         position:"absolute",
         right:25,
-        top:30
+        top:36
       },
       registerContainer:{
         borderWidth:1,
         borderColor:"white",
         borderRadius:60,
-        padding:3
+        padding:3,
+        backgroundColor: colors.color1
       }
 })

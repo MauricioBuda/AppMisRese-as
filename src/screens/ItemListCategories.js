@@ -87,7 +87,7 @@ const ItemListCategories = ({route}) => {
         <BlurView intensity={400} style={styles.modalContainer}>
           <TextInput
             style={styles.textInput}
-            placeholder="Nombre del nuevo item"
+            placeholder={`Nombre del nuevo item de "${name}"`}
             onChangeText={setNewItem}
             value={newItem}
             autoFocus

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Pressable } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import SubmitButton from '../components/SubmitButton';
 import { useGetUserQuery, usePatchNameProfileMutation } from '../services/users';
@@ -16,6 +16,12 @@ const MyProfile = ({ navigation }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [newName, setNewName] = useState(user?.name || 'Ingrese nombre'); // Valor por defecto del nombre
 
+    
+
+useEffect(()=>{
+    setNewName(user?.name? user.name : "Ingrese nuevo nombre")
+},[user])
+
 
     if (isLoading) return <LoadingSpinner />;
 
@@ -29,15 +35,20 @@ const MyProfile = ({ navigation }) => {
         }
     };
 
+
+
     return (
         <View style={styles.container}>
-            <Image
-                source={user.image ? 
-                        { uri: user.image } 
-                        : require("../../assets/profile_default.png")}
-                resizeMode='cover'
-                style={styles.image}
-            />
+
+        <Pressable onPress={()=>navigation.navigate('FullImage', {image: user.image})}>
+                <Image
+                    source={user.image ? 
+                            { uri: user.image } 
+                            : require("../../assets/profile_default.png")}
+                    resizeMode='cover'
+                    style={styles.image}
+                />
+        </Pressable>
 
             <View style={styles.userNameContainer}>
                 {isEditing ? (

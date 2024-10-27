@@ -7,9 +7,9 @@
     "icon": "./assets/ListIcon.jpg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/ListIcon.jpg",
+      "image": "./assets/FondoResenias.jpg",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#f3e8e8"
     },
     "ios": {
       "supportsTablet": true

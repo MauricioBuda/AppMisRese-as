@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Pressable } from 'react-native'
+import { StyleSheet, Text, View,Pressable, ImageBackground } from 'react-native'
 import { colors } from '../global/colors'
 import { useEffect, useState } from 'react'
 import InputForm from '../components/InputForm'
@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux'
 import { loginSchema } from '../validations/loginSchema'
 import { deleteSession, insertSession } from '../db'
 import AntDesign from '@expo/vector-icons/AntDesign';
+import CartelNombreApp from '../components/CartelNombreApp'
+import PresentacionApp from '../components/PresentacionApp'
 
 
 const Login = ({navigation}) => {
@@ -19,6 +21,8 @@ const Login = ({navigation}) => {
     const [errorPassword,setErrorPassword] = useState("")
     const [triggerLogin,{data,isSuccess,isError,error}] = useLoginMutation()
     const dispatch = useDispatch()
+
+    const [viewPresentacion, setViewPresentacion] = useState(false)
     const [viewPass, setViewPass] = useState(true)
 
     useEffect(()=>{
@@ -63,8 +67,40 @@ const Login = ({navigation}) => {
       setViewPass(!viewPass)
     }
 
+    const handleViewPresentacion = () => {
+      setViewPresentacion(!viewPresentacion)
+    }
+
+
+
+
+
+
   return (
-    <View style={styles.main}>
+    <ImageBackground 
+      style={styles.main}
+      source={require('./../../assets/FondoResenias.jpg')}
+      resizeMode="contain"
+    >
+
+
+      <Pressable onPress={handleViewPresentacion} style={styles.questionIcon}>
+          <AntDesign name="questioncircleo" size={30} color="black" />
+      </Pressable>
+
+
+      <CartelNombreApp/>
+
+
+      {
+          viewPresentacion 
+          ?
+            <PresentacionApp closeModal={handleViewPresentacion}/>
+          :
+          null
+      }
+
+
         <View style={styles.container}>
             <InputForm
                 style={styles.input}
@@ -77,7 +113,7 @@ const Login = ({navigation}) => {
             <View style={styles.inputContainer}>
                 <InputForm
                     style={styles.input}
-                    label="Password"
+                    label="Contraseña"
                     value={password}
                     onChangeText={(t) => setPassword(t)}
                     isSecure={viewPass}
@@ -94,7 +130,7 @@ const Login = ({navigation}) => {
                 <Text style={styles.subLink}>Registro</Text>
             </Pressable>
         </View>
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -104,11 +140,16 @@ const styles = StyleSheet.create({
     main:{
         flex:1,
         justifyContent:"center",
-        alignItems:"center"
+        alignItems:"center",
+      },
+      questionIcon:{
+        position:"absolute",
+        top:12,
+        right:5
       },
       container:{
         width:"90%",
-        backgroundColor:colors.color1,
+        backgroundColor:"#d4b3b3BB",
         gap:15,
         borderRadius:10,
         justifyContent:"center",
@@ -128,7 +169,7 @@ const styles = StyleSheet.create({
       subLink:{
         fontSize:16,
         fontFamily:"Josefin",
-        color: colors.color2
+        color: "#000000aa"
       },
       inputContainer:{
         flexDirection:"row",
@@ -137,12 +178,13 @@ const styles = StyleSheet.create({
       eye:{
         position:"absolute",
         right:25,
-        top:30
+        top:35
       },
       confirmContainer:{
         borderWidth:1,
         borderColor:"white",
         borderRadius:60,
-        padding:3
+        padding:3,
+        backgroundColor: colors.color1
       }
 })

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Pressable, View, Image } from 'react-native';
 import SubmitButton from '../components/SubmitButton';
 import * as ImagePicker from 'expo-image-picker';
 import { useEffect, useState } from 'react';
@@ -35,6 +35,9 @@ const ImageSelector = ({ navigation, route }) => {
         setImage("data:image/jpg;base64," + result.assets[0].base64);
     };
 
+
+    
+
     // Función para seleccionar una imagen desde la galería
     const pickImageFromGallery = async () => {
         const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -42,7 +45,7 @@ const ImageSelector = ({ navigation, route }) => {
 
         const result = await ImagePicker.launchImageLibraryAsync({
             aspect: [9, 9],
-            quality: 0.5,
+            quality: 0.1,
             base64: true,
             allowsEditing: true,
         });
@@ -75,11 +78,13 @@ const ImageSelector = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
-            <Image
-                source={image ? { uri: image } : item?.image ? { uri: item.image } : require("../../assets/pic.jpg")}
-                resizeMode="cover"
-                style={styles.image}
-            />
+            <Pressable onPress={()=>navigation.navigate('FullImage', {image: image ? image : item?.image? item.image : null})}>
+                    <Image
+                        source={image ? { uri: image } : item?.image ? { uri: item.image } : require("../../assets/pic.jpg")}
+                        resizeMode="cover"
+                        style={styles.image}
+                    />
+            </Pressable>
             <View style={styles.buttonContainer}>
                 <AntDesign style={styles.icon} name="camerao" size={30} color="black" />
                 <SubmitButton title="Tomar foto" onPress={pickImage} />

@@ -1,16 +1,17 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import SubmitButton from '../components/SubmitButton';
 import * as ImagePicker from 'expo-image-picker';
 import { useEffect, useState } from 'react';
 import { useGetUserQuery, usePatchImageProfileMutation } from '../services/users';
 import { useSelector } from 'react-redux';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const ImageSelector = ({ navigation }) => {
     const [image, setImage] = useState("");
     const [triggerAddImageProfile] = usePatchImageProfileMutation();
     const localId = useSelector(state => state.auth.localId);
-    const { data: user } = useGetUserQuery({ localId });
+    const { data: user, isLoading } = useGetUserQuery({ localId });
 
     // Función para tomar una foto con la cámara
     const pickImage = async () => {
@@ -35,7 +36,7 @@ const ImageSelector = ({ navigation }) => {
 
         const result = await ImagePicker.launchImageLibraryAsync({
             aspect: [9, 9],
-            quality: 0.5,
+            quality: 0.1,
             base64: true,
             allowsEditing: true,
         });
@@ -62,13 +63,20 @@ const ImageSelector = ({ navigation }) => {
         triggerAddImageProfile({ image, localId });
     };
 
+
+    if (isLoading) return <LoadingSpinner/>
+
+
     return (
         <View style={styles.container}>
-            <Image
-                source={image ? { uri: image } : user?.image ? { uri: user.image } : require("../../assets/profile_default.png")}
-                resizeMode="cover"
-                style={styles.image}
-            />
+            <Pressable onPress={()=>navigation.navigate('FullImage', {image: image ? image : user?.image? user.image : null})}>
+                    <Image
+                        source={image ? { uri: image } : user?.image ? { uri: user.image } : require("../../assets/profile_default.png")}
+                        resizeMode="cover"
+                        style={styles.image}
+                    />
+            </Pressable>
+
             <View style={styles.buttonContainer}>
                 <AntDesign style={styles.icon} name="camerao" size={30} color="black" />
                 <SubmitButton title="Tomar Imagen" onPress={pickImage} />

@@ -24,20 +24,24 @@ const styles = StyleSheet.create({
     input:{
         width:"90%",
         borderWidth:0,
-        borderBottomWidth:3,
-        borderBottomColor:"white",
+        borderWidth:2,
+        borderColor:"#00000077",
         padding:2,
+        paddingLeft:10,
         fontFamily:"Josefin",
-        fontSize:14,
+        fontSize:18,
         marginHorizontal:"5%",
-        marginVertical:10
+        marginVertical:10,
+        borderRadius:8,
+        backgroundColor: "#d4b3b3BB",
+
       },
       titleInput:{
         width:"90%",
         marginHorizontal:"5%",
         fontSize:18,
         fontFamily:"Josefin",
-        color:"white"
+        color:"black"
       },
       error:{
         fontSize:16,

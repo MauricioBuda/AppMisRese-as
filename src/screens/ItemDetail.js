@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useGetItemInformationQuery, usePatchAddCalificationInItemInCategoryMutation, usePatchAddObservationInItemInCategoryMutation } from '../services/users'
 import LoadingSpinner from '../components/LoadingSpinner'
+import FullImage from '../components/FullImage'
 
 
 const ItemDetail = ({route}) => {
@@ -19,7 +20,7 @@ const ItemDetail = ({route}) => {
   const dispatch = useDispatch()
   
   const [obs, setObs] = useState(item?.observation? item.observation : "")
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
   const [viewCount, setViewCount] = useState(false)
   const [viewObs, setViewObs] = useState(false)
 
@@ -74,14 +75,22 @@ const ItemDetail = ({route}) => {
         <Text style={styles.title}>{name}</Text>
       </View>
 
-      <Image
-                source={item?.image ? { uri: item.image } : require("../../assets/pic.jpg")}
-                resizeMode="cover"
-                style={styles.image}
-      />
+
+
+      <Pressable onPress={()=>navigation.navigate('FullImage', {image: item.image})}>
+          <Image
+                    source={item?.image ? { uri: item.image } : require("../../assets/pic.jpg")}
+                    resizeMode="cover"
+                    style={styles.image}
+          />
+      </Pressable>
+
+
+
+
+
 
       <View style={styles.countContainer}>
-
           {
             viewCount
               ?
@@ -91,9 +100,10 @@ const ItemDetail = ({route}) => {
               :
               null
           }
-      
 
-            <Text style={[styles.count, {color: count === 1? "red" : count === 10? "green" : "black" }]}>{count}</Text>
+            <Text style={[styles.count, {color: count === 1? "red" : count === 10? "green" : "black" }]}>
+              {count}
+            </Text>
 
           {
             viewCount
@@ -112,14 +122,18 @@ const ItemDetail = ({route}) => {
 
       <Pressable 
         onPress={()=>{
-          handleViewCount()
-          viewCount? changeCalification() : null
-        }}
-        
+            handleViewCount()
+            viewCount? changeCalification() : null
+          }}
         style={styles.button}
-       >
-        <Text style={styles.buttonConfirm}>{viewCount ? "Guardar" : count === 0 ? "Agregar calificación" :  !viewCount? "Modificar nota" : null}</Text>
+        >
+        <Text style={[styles.buttonConfirm, {fontWeight: viewCount? "bold" : null}]}>
+          {viewCount ? "Guardar nota" : count === 0 ? "Agregar calificación" :  !viewCount? "Modificar nota" : null}
+        </Text>
       </Pressable>
+
+
+
 
       
       <Pressable onPress={()=>navigation.navigate("SelectItemImage",{name, localId, itemId, categoryId})} style={styles.button}>
@@ -133,7 +147,7 @@ const ItemDetail = ({route}) => {
           }}
           style={styles.button}
       >
-        <Text style={styles.buttonConfirm}>{viewObs ? "Guardar observación" : item?.observation? "Modificar observación" : "Agregar observación"}</Text>
+        <Text style={[styles.buttonConfirm, {fontWeight: viewObs? "bold" : null}]}>{viewObs ? "Guardar observación" : item?.observation? "Modificar observación" : "Agregar observación"}</Text>
       </Pressable>
 
 
@@ -162,7 +176,7 @@ const ItemDetail = ({route}) => {
         </View>
       }
 
-
+{/* <FullImage image={item?.image? item.image : null}/> */}
 
 
     </ScrollView>
@@ -232,6 +246,7 @@ const styles = StyleSheet.create({
       paddingVertical: 5
     },
     obs:{
+      textAlign:"center",
       marginVertical: 20,
       borderRadius: 8,
       width: "80%",
