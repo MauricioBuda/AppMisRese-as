@@ -9,7 +9,7 @@ const FullImage = ({route}) => {
 
   return (
     <Image
-        source={{uri: image? image : null}}
+        source={image ? { uri: image } : require("../../assets/pic.jpg")}
         resizeMode="cover"
         style={styles.image}
     />

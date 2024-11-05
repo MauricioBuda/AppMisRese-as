@@ -45,7 +45,7 @@ const ImageSelector = ({ navigation, route }) => {
 
         const result = await ImagePicker.launchImageLibraryAsync({
             aspect: [9, 9],
-            quality: 0.1,
+            quality: 0.2,
             base64: true,
             allowsEditing: true,
         });
@@ -99,11 +99,11 @@ const ImageSelector = ({ navigation, route }) => {
             </View>
             <View style={styles.buttonContainer2}>
                 <View style={styles.buttonContainerConfirm}>
-                    <AntDesign style={styles.icon} name="closecircleo" size={30} color="black" />
+                    <AntDesign style={styles.icon} name="closecircleo" size={30} color="red" />
                     <SubmitButton title="Cancelar" onPress={canceleImage} />
                 </View>
                 <View style={styles.buttonContainerConfirm}>
-                    <AntDesign style={styles.icon} name="checkcircleo" size={30} color="black" />
+                    <AntDesign style={styles.icon} name="checkcircleo" size={30} color="#90EE90" />
                     <SubmitButton title="Confirmar" onPress={confirmImage} />
                 </View>
             </View>

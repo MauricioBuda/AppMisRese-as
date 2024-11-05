@@ -91,11 +91,11 @@ const ImageSelector = ({ navigation }) => {
             </View>
             <View style={styles.buttonContainer2}>
                 <View style={styles.buttonContainerConfirm}>
-                    <AntDesign style={styles.icon} name="closecircleo" size={30} color="black" />
+                    <AntDesign style={styles.icon} name="closecircleo" size={30} color="red" />
                     <SubmitButton title="Cancelar" onPress={canceleImage} />
                 </View>
                 <View style={styles.buttonContainerConfirm}>
-                    <AntDesign style={styles.icon} name="checkcircleo" size={30} color="black" />
+                    <AntDesign style={styles.icon} name="checkcircleo" size={30} color="#90EE90" />
                     <SubmitButton title="Confirmar" onPress={confirmImage} />
                 </View>
             </View>

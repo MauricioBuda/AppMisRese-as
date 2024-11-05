@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View, Pressable, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 import { colors } from '../global/colors'
 
-const { height, width } = Dimensions.get('window');
 
 
 const ConfirmModal = ({title, btn1, btn2, onPress1, onPress2}) => {
@@ -34,8 +33,6 @@ const styles = StyleSheet.create({
         fontWeight:"bold"
     },
     modalBackground: {
-        flex: 1,
-        height: "100%",
         position: 'absolute',
         top: 0,
         left: 0,
@@ -44,7 +41,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.7)', // Fondo semitransparente
         justifyContent: 'center',
         alignItems: 'center',
-        zIndex: 2, // Asegúrate de que sea mayor que el de las categorías
+        zIndex: 2
       },
     modalBtnContainer: {
         flexDirection: "row",

@@ -60,7 +60,6 @@ const ItemListCategories = ({route}) => {
     return <Text>Error al cargar los items.</Text>;
   }
 
-
   return (
     <>
       {
@@ -74,7 +73,7 @@ const ItemListCategories = ({route}) => {
           <FlatList
             data={Object.entries(items)}  // Convertir el objeto de ítems en un array
             keyExtractor={([key, item]) => key}
-            renderItem={({ item }) => <ItemList name= {item[1].name} itemId={item[0]}  categoryId={categoryId} functionDelete={deleteItemInCategory}/>} // Renderizar el nombre del ítem
+            renderItem={({ item }) => <ItemList name={item[1].name} itemId={item[0]} image={item[1].image?item[1].image:null}  categoryId={categoryId} functionDelete={deleteItemInCategory}/>} // Renderizar el nombre del ítem
           />
 
         <Pressable onPress={handleViewModal} style={styles.btn}>
@@ -84,7 +83,7 @@ const ItemListCategories = ({route}) => {
       }
 
       {viewModal && (
-        <BlurView intensity={400} style={styles.modalContainer}>
+        <BlurView intensity={420} style={styles.modalContainer}>
           <TextInput
             style={styles.textInput}
             placeholder={`Nombre del nuevo item de "${name}"`}

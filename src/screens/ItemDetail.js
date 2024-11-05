@@ -159,7 +159,7 @@ const ItemDetail = ({route}) => {
               <TextInput 
                   style={styles.input} 
                   multiline= {true}
-                  placeholder= "Se puede aclarar una empresa, dirección, fecha, etc.."
+                  placeholder= "Ejemplo: Precio, dirección, fecha, empresa, etc.."
                   onChangeText={setObs}
                   value={obs}
                   autoFocus

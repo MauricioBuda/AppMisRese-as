@@ -44,12 +44,13 @@ const Category = ({ item }) => {
 
   return (
     <>
-    <Pressable onPress={() => navigation.navigate("Products",{name:item.name, categoryId: item.id})}>
+    <Pressable onPress={isEditing? null : () => navigation.navigate("Products",{name:item.name, categoryId: item.id})}>
       <ShadowWrapper style={styles.container}>
 
         {
           isEditing?
                 <TextInput
+                style={styles.input}
                 value={newNameCategory}
                 onChangeText= {setNewNameCategory}
                 autoFocus
@@ -69,6 +70,8 @@ const Category = ({ item }) => {
             onPress={isEditing ? handleConfirmChangeCategoryName : handleEditNameCategory}
             />
           </Pressable>
+
+
 
           <Pressable onPress={handleDeleteModal}>
             <AntDesign style={styles.btn} name="delete" size={30} color="black" />
@@ -118,5 +121,8 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginLeft: 20
+  },
+  input:{
+    width: "60%",
   }
 });
