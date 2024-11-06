@@ -1,14 +1,16 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native'
 import React from 'react'
+
+const { height, width } = Dimensions.get('window');
 
 const PresentacionApp = ({closeModal}) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>"Mis reseñas" es una app para los que deseen llevar un registro de sus experiencias. Puede ser desde un libro leído, o una película vista; hasta una cerveza que se pruebe, o un destino que se visite. Toda la información queda guardada en la nube, por lo que una vez que te generas la cuenta, no hay manera de que se pierda. Así por ejemplo, si pasa mucho tiempo y volves a algún bar, vas a saber que tragos te habían gustado, o si tenés que recomendar algo a un amigo, vas a tener todo catalogado en tu app! Vas a poder dividir las experiencias por categorías, a cada una asignarle una nota y foto, y también una observación (como fecha, lugar, precio, etc). Cualquier crítica o sugerencia no dudes en contactarnos a mauricio.ariel.budagmail.com :) </Text>
+    <ScrollView style={styles.container}>
+      <Text style={styles.text}>"Mis reseñas" es una app para los que deseen llevar un registro de sus experiencias. Puede ser desde un libro leído, o una película vista; hasta una cerveza que se pruebe, o un destino que se visite. Toda la información queda guardada en la nube, por lo que una vez que te generas la cuenta, no hay manera de que se pierda. Así por ejemplo, si pasa mucho tiempo y volves a algún bar, vas a saber que tragos te habían gustado, o si tenés que recomendar algo a un amigo, vas a tener todo catalogado en tu app! Vas a poder dividir las experiencias por categorías, a cada una asignarle una nota y foto, y también una observación (como fecha, lugar, precio, etc). Cualquier crítica o sugerencia no dudes en contactarnos a mauricio.ariel.buda@gmail.com 😊 </Text>
       <Pressable onPress={closeModal} style={styles.btnContainer}>
         <Text style={styles.btnText}>Aceptar</Text>
       </Pressable>
-    </View>
+    </ScrollView>
   )
 }
 
@@ -27,8 +29,7 @@ const styles = StyleSheet.create({
     },
     text:{
         textAlign:"center",
-        fontSize:23,
-        // fontWeight:"bold",
+        fontSize: width * 0.048,
         fontFamily:"Playfair",
     },
     btnContainer:{
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         borderRadius:10
     },
     btnText:{
-        fontSize:20,
+        fontSize: width * 0.05,
         color:"white",
         fontWeight:"bold"
     }

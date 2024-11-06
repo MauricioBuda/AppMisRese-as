@@ -231,8 +231,8 @@ const styles = StyleSheet.create({
       },
       eye:{
         position:"absolute",
-        right:25,
-        top:36
+        right:"7%",
+        top:"39%"
       },
       registerContainer:{
         borderWidth:1,

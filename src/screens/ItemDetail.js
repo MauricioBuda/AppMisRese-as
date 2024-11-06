@@ -1,13 +1,12 @@
-import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native'
+import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View, Dimensions} from 'react-native'
 import { useState, useEffect } from 'react'
 import { colors } from '../global/colors'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { useGetItemInformationQuery, usePatchAddCalificationInItemInCategoryMutation, usePatchAddObservationInItemInCategoryMutation } from '../services/users'
 import LoadingSpinner from '../components/LoadingSpinner'
-import FullImage from '../components/FullImage'
 
+const { height, width } = Dimensions.get('window');
 
 const ItemDetail = ({route}) => {
   const localId = useSelector(state => state.auth.localId)
@@ -197,8 +196,8 @@ const styles = StyleSheet.create({
       gap: 25
     },
     button:{
-        width:"50%",
-        marginHorizontal: "25%",
+        width:"60%",
+        marginHorizontal: "20%",
         marginVertical: 15,
         alignItems:"center",
         justifyContent:"center",
@@ -234,7 +233,7 @@ const styles = StyleSheet.create({
       fontSize:35
     },
     buttonConfirm:{
-      fontSize:20
+      fontSize: width * 0.05
     },
     input:{
       borderWidth:1,

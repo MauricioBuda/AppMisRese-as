@@ -1,6 +1,8 @@
-import { StyleSheet, Text, Pressable } from 'react-native'
+import { StyleSheet, Text, Pressable, Dimensions } from 'react-native'
 import React from 'react'
 import { colors } from '../global/colors'
+
+const { height, width } = Dimensions.get('window');
 
 const SubmitButton = ({title,onPress}) => {
   return (
@@ -26,6 +28,6 @@ const styles = StyleSheet.create({
     text:{
         textAlign:"center",
         color:"white",
-        fontSize:20
+        fontSize: width * 0.04
     }
 })

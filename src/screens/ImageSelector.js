@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, Dimensions } from 'react-native';
 import SubmitButton from '../components/SubmitButton';
 import * as ImagePicker from 'expo-image-picker';
 import { useEffect, useState } from 'react';
@@ -6,6 +6,8 @@ import { useGetUserQuery, usePatchImageProfileMutation } from '../services/users
 import { useSelector } from 'react-redux';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import LoadingSpinner from '../components/LoadingSpinner';
+
+const { height, width } = Dimensions.get('window');
 
 const ImageSelector = ({ navigation }) => {
     const [image, setImage] = useState("");
@@ -78,24 +80,24 @@ const ImageSelector = ({ navigation }) => {
             </Pressable>
 
             <View style={styles.buttonContainer}>
-                <AntDesign style={styles.icon} name="camerao" size={30} color="black" />
+                <AntDesign style={styles.icon} name="camerao" size={width * 0.06} color="black" />
                 <SubmitButton title="Tomar Imagen" onPress={pickImage} />
             </View>
             <View style={styles.buttonContainer}>
-                <AntDesign style={styles.icon} name="picture" size={30} color="black" />
+                <AntDesign style={styles.icon} name="picture" size={width * 0.06} color="black" />
                 <SubmitButton title="Elegir desde Galería" onPress={pickImageFromGallery} />
             </View>
             <View style={styles.buttonContainer}>
-                <AntDesign style={styles.icon} name="delete" size={30} color="black" />
+                <AntDesign style={styles.icon} name="delete" size={width * 0.06} color="black" />
                 <SubmitButton title="Eliminar foto actual" onPress={deleteImage} />
             </View>
             <View style={styles.buttonContainer2}>
                 <View style={styles.buttonContainerConfirm}>
-                    <AntDesign style={styles.icon} name="closecircleo" size={30} color="red" />
+                    <AntDesign style={styles.icon} name="closecircleo" size={width * 0.06} color="red" />
                     <SubmitButton title="Cancelar" onPress={canceleImage} />
                 </View>
                 <View style={styles.buttonContainerConfirm}>
-                    <AntDesign style={styles.icon} name="checkcircleo" size={30} color="#90EE90" />
+                    <AntDesign style={styles.icon} name="checkcircleo" size={width * 0.06} color="#90EE90" />
                     <SubmitButton title="Confirmar" onPress={confirmImage} />
                 </View>
             </View>
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         position: "relative",
-        left: 35,
+        left: 33,
         zIndex: 1,
     },
 });

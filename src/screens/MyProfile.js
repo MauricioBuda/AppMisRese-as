@@ -14,12 +14,12 @@ const MyProfile = ({ navigation }) => {
 
     // Estado para manejar la edición del nombre
     const [isEditing, setIsEditing] = useState(false);
-    const [newName, setNewName] = useState(user?.name || 'Ingrese nombre'); // Valor por defecto del nombre
+    const [newName, setNewName] = useState(user?.name || ''); // Valor por defecto del nombre
 
     
 
 useEffect(()=>{
-    setNewName(user?.name? user.name : "Ingrese nuevo nombre")
+    setNewName(user?.name? user.name : "")
 },[user])
 
 
@@ -53,6 +53,7 @@ useEffect(()=>{
             <View style={styles.userNameContainer}>
                 {isEditing ? (
                     <TextInput
+                        placeholder='Ingrese su nombre'
                         style={styles.nameInput}
                         value={newName}
                         onChangeText={setNewName}
