@@ -7,9 +7,9 @@ const TabBarIcon = ({text,icon,focused}) => {
        <Entypo 
         style={styles.icon} 
         name={icon} size={24} 
-        color={focused ? "white" : "#ffffff88"} 
+        color={focused ? "white" : "#A9A9A9"} 
        />
-       <Text style={{color:focused ? "white" : "#ffffff88"}}>{text}</Text>
+       <Text style={{color:focused ? "white" : "#A9A9A9"}}>{text}</Text>
     </View>
   )
 }

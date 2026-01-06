@@ -10,7 +10,7 @@ const CartStack = () => {
             screenOptions={(
                 () => {
                     return {
-                        header: () => <Header title="Carrito"/>
+                        header: () => <Header title="En proceso"/>
                     }
                 }
             )}

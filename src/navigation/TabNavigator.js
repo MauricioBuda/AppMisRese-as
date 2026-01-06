@@ -33,7 +33,7 @@ const TabNavigator = () => {
             component={CartStack}
             options={{
                 tabBarIcon:({focused}) => {
-                    return <TabBarIcon focused={focused} text="Carrito" icon="shopping-cart"/>
+                    return <TabBarIcon focused={focused} text="En proceso" icon="shopping-cart"/>
                 }
                 
             }}
@@ -43,7 +43,7 @@ const TabNavigator = () => {
             component={OrdersStack}
             options={{
                 tabBarIcon:({focused}) => {
-                    return <TabBarIcon focused={focused} text="Ordenes" icon="list"/>
+                    return <TabBarIcon focused={focused} text="En proceso" icon="list"/>
                 }
             }}
         />

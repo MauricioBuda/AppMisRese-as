@@ -11,7 +11,7 @@ const navigation = useNavigation()
     <View style={styles.container}>
       <Text style={styles.text}>{title}</Text>
       <Pressable  
-          onPress={title==="¡Todavìa no hay ítems en esta categoría!"? funcion: ()=>navigation.navigate(funcion)}
+          onPress={title==="¡Todavía no hay ítems en esta categoría!"? funcion: ()=>navigation.navigate(funcion)}
           style={styles.containerButton}
       >
         <Text style={styles.button}>{button}</Text>

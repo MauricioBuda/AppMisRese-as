@@ -13,7 +13,7 @@ const OrdersStack = () => {
             screenOptions={(
                 () => {
                     return {
-                        header: () => <Header title="Ordenes"/>
+                        header: () => <Header title="En proceso"/>
                     }
                 }
             )}

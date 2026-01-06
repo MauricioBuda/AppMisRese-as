@@ -28,7 +28,7 @@ const Cart = ({navigation}) => {
   }
 
 
-  if(cart.total === 0) return <EmptyList title="¡El carrito está vacío!" button="Ir al shop" funcion="HomeStack"/>
+  if(cart.total === 0) return <EmptyList title="¡En proceso!" button="Volver" funcion="HomeStack"/>
   
 
 

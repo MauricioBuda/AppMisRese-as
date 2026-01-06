@@ -57,7 +57,7 @@ const ItemListCategories = ({route}) => {
   }
 
   if (error) {
-    return <Text>Error al cargar los items.</Text>;
+    return <Text>Error al cargar los items</Text>;
   }
 
   return (
@@ -65,7 +65,7 @@ const ItemListCategories = ({route}) => {
       {
         !items
         ?
-          <EmptyList title="¡Todavìa no hay ítems en esta categoría!" button="Agregar el primer ítem" funcion={handleViewModal} />
+          <EmptyList title="¡Todavía no hay ítems en esta categoría!" button="Agregar el primer ítem" funcion={handleViewModal} />
         :
           <View style={styles.container}>
 
