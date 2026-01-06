@@ -65,7 +65,7 @@ const ItemListCategories = ({route}) => {
       {
         !items
         ?
-          <EmptyList title="¡Todavía no hay ítems en esta categoría!" button="Agregar el primer ítem" funcion={handleViewModal} />
+          <EmptyList title="¡Todavía no hay ítems en esta categoría!" button="Agregar primer ítem" funcion={handleViewModal} />
         :
           <View style={styles.container}>
 
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: colors.color1,
     minWidth: "60%",
-    maxWidth:"80%",
+    maxWidth:"100%",
     borderRadius: 8,
     marginVertical: 20,
     marginHorizontal: "auto",

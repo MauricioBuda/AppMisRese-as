@@ -4,7 +4,7 @@
     "slug": "Resenias",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/ListIcon.jpg",
+    "icon": "./assets/Resenias1024x1024.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/FondoResenias.jpg",
