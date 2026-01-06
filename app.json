@@ -16,7 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/ListIcon.jpg",
+        "foregroundImage": "./assets/Resenias1024x1024.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.mauriciobuda.Resenias"
